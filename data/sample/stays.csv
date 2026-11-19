@@ -1,0 +1,61 @@
+id,submittedAt,townSlug,nightsPlanned,nightsStayed,verdict,month,styles,tripLength,tip
+sample-pai-01,2025-12-08,pai,,1,more,11,chill,3m+,Only rent a scooter if you have ridden one before.
+sample-pai-02,2026-05-18,pai,1,2,more,1,hiking,2-4w,
+sample-pai-03,2026-11-12,pai,,2,right,2,hiking,1-3m,The canyon at sunset gets busy. Go an hour early.
+sample-pai-04,2026-07-15,pai,2,2,more,12,chill;budget,2-4w,Mornings are cold in December. Bring a jumper.
+sample-pai-05,2026-05-17,pai,1,2,more,12,party;chill;hiking,1-3m,Walking street food is the best value in town.
+sample-pai-06,2026-02-16,pai,1,2,right,2,chill;hiking;food,1-3m,Stay outside the centre if you want to sleep.
+sample-pai-07,2026-10-03,pai,2,3,more,1,party;budget,3m+,Hot springs are worth the ride.
+sample-pai-08,2026-10-10,pai,3,3,right,2,culture,2-4w,
+sample-pai-09,2026-10-02,pai,3,3,right,2,budget,2-4w,
+sample-pai-10,2026-02-15,pai,3,3,skip,1,budget,3m+,Too touristy for me. I would skip it next time.
+sample-pai-11,2026-09-12,pai,3,3,more,12,chill,3m+,
+sample-pai-12,2026-03-01,pai,5,3,fewer,,chill,1-3m,Two nights is enough if you hate hippie vibes.
+sample-pai-13,2026-11-06,pai,2,3,more,2,budget,3m+,
+sample-pai-14,2025-12-15,pai,5,3,right,2,chill,2-4w,
+sample-pai-15,2026-03-03,pai,4,3,skip,11,party,2-4w,
+sample-pai-16,2026-02-18,pai,,3,right,2,party;hiking,2-4w,
+sample-pai-17,2026-05-12,pai,5,4,fewer,2,party,1-3m,
+sample-pai-18,2026-10-10,pai,,4,right,2,budget,3m+,
+sample-pai-19,2026-02-17,pai,,4,fewer,1,chill;budget;food,3m+,
+sample-pai-20,2026-01-23,pai,6,4,right,2,chill;food,3m+,
+sample-pai-21,2026-07-21,pai,3,4,more,12,budget,2-4w,
+sample-pai-22,2026-11-08,pai,3,4,right,12,budget,3m+,
+sample-pai-23,2026-07-15,pai,5,5,fewer,1,party,2-4w,
+sample-pai-24,2026-10-20,pai,7,5,right,3,chill,2-4w,Waterfalls were almost dry in March.
+sample-pai-25,2026-01-13,pai,4,5,more,11,chill;food,3m+,
+sample-pai-26,2026-09-15,pai,3,5,more,2,party;chill;culture,3m+,
+sample-pai-27,2026-02-20,pai,2,6,right,,chill;hiking;culture,3m+,Planned two nights and stayed six. Book one night at a time.
+sample-pai-28,2026-01-17,pai,6,6,right,11,chill;culture,1-3m,
+sample-pai-29,2026-03-10,pai,6,6,more,3,chill,1-3m,
+sample-pai-30,2026-10-22,pai,7,7,more,12,budget;food,3m+,
+sample-pai-31,2026-11-01,pai,7,7,skip,3,party;chill;budget,2-4w,
+sample-pai-32,2026-11-01,pai,10,10,right,12,party;hiking;budget,2-4w,
+sample-pai-33,2024-06-11,pai,3,3,more,2,hiking;budget,1-3m,
+sample-pai-34,2024-09-26,pai,2,2,right,12,chill;hiking;budget,3m+,
+sample-chiang-mai-01,2026-05-26,chiang-mai,,2,more,1,culture,2-4w,Sunday night market is the one to see.
+sample-chiang-mai-02,2026-05-05,chiang-mai,2,2,right,12,hiking;budget;culture,2-4w,Old town hostels are walkable to everything.
+sample-chiang-mai-03,2026-09-17,chiang-mai,3,2,right,,hiking,1-3m,Book cooking classes a day ahead.
+sample-chiang-mai-04,2025-12-11,chiang-mai,3,3,more,11,party;hiking;food,2-4w,
+sample-chiang-mai-05,2026-03-04,chiang-mai,,3,right,12,party;food,1-3m,
+sample-chiang-mai-06,2026-05-13,chiang-mai,,3,skip,3,party;budget;food,3m+,Smoky in March. I left early.
+sample-chiang-mai-07,2026-02-14,chiang-mai,2,3,more,11,food,3m+,
+sample-chiang-mai-08,2026-03-03,chiang-mai,2,3,right,1,party;culture,3m+,
+sample-chiang-mai-09,2026-02-02,chiang-mai,4,4,fewer,12,culture,2-4w,
+sample-chiang-mai-10,2026-05-21,chiang-mai,4,4,right,11,budget;food,1-3m,
+sample-chiang-mai-11,2025-12-01,chiang-mai,,4,more,11,chill;budget,3m+,
+sample-chiang-mai-12,2026-09-22,chiang-mai,5,4,fewer,10,chill;hiking,3m+,
+sample-chiang-mai-13,2026-02-13,chiang-mai,3,5,more,1,party,1-3m,Base yourself here for day trips.
+sample-chiang-mai-14,2026-02-02,chiang-mai,,5,right,12,food;culture,3m+,
+sample-chiang-mai-15,2026-05-02,chiang-mai,5,5,fewer,3,chill;budget,1-3m,
+sample-chiang-mai-16,2026-03-02,chiang-mai,6,6,right,,hiking,1-3m,
+sample-chiang-mai-17,2026-01-16,chiang-mai,7,7,right,,budget,1-3m,
+sample-chiang-mai-18,2024-03-14,chiang-mai,3,4,skip,3,party;hiking,3m+,
+sample-hoi-an-01,2026-02-10,hoi-an,3,2,more,8,party,3m+,Cycle to An Bang beach in the morning.
+sample-hoi-an-02,2026-09-24,hoi-an,5,3,fewer,8,culture,2-4w,Get clothes made on day one so there is time for fittings.
+sample-hoi-an-03,2026-03-03,hoi-an,,3,more,5,food,1-3m,
+sample-hoi-an-04,2026-11-01,hoi-an,6,4,right,,chill;hiking;budget,3m+,
+sample-hoi-an-05,2026-11-02,hoi-an,2,3,right,3,party;hiking;food,2-4w,
+sample-hoi-an-06,2026-10-16,hoi-an,1,2,fewer,,hiking;culture,3m+,
+sample-hoi-an-07,2026-03-03,hoi-an,4,4,right,3,food,2-4w,
+sample-hoi-an-08,2026-10-02,hoi-an,6,5,more,4,food,3m+,

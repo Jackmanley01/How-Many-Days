@@ -230,12 +230,16 @@ scripts/        import-form.ts
 - 2026-11-19: Product name is How Many Days; the unit on the page is nights.
 - 2026-11-19: Launch on one route (Southeast Asia loop, 20–30 towns), website before app.
 - 2026-11-19: Design tokens live in `app/globals.css` because Tailwind v4 replaced the config file. A test (`lib/design-tokens.test.ts`) keeps them matching the Design table.
+- 2026-11-19: Launch route is the Southeast Asia loop, 26 towns in `data/towns.json` (route `se-asia-loop`). Left out for now: Ayutthaya, Kanchanaburi, Koh Samui, Huay Xai, Nong Khiaw, 4000 Islands, Mui Ne.
+- 2026-11-19: One Cat Ba page; "Ha Long Bay", "Halong" and "Lan Ha Bay" count as Cat Ba.
+- 2026-11-19: One Krabi page covering Ao Nang and Railay.
+- 2026-11-19: Sample data uses Pai (34 stays), Chiang Mai (18) and Hoi An (8) so it covers all three confidence levels. Always badged "Sample data".
 
 ## Founder checklist
 
 - [x] Whole numbers only: no stars, no half stars, no decimals
 - [ ] Add "How many nights had you planned?" to the form before collecting any data
-- [ ] Pick the launch route and its 20–30 towns
+- [x] Pick the launch route and its 20–30 towns
 - [ ] Build the Google Form and link it to a Sheet
 - [ ] Post the form in Facebook groups and Discords; post the discussion thread on Reddit
 - [ ] Reach 100+ responses with a median of 6+ stops

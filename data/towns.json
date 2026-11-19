@@ -1,0 +1,249 @@
+[
+  {
+    "slug": "bangkok",
+    "name": "Bangkok",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": [
+      "BKK",
+      "Krung Thep"
+    ]
+  },
+  {
+    "slug": "chiang-mai",
+    "name": "Chiang Mai",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Chiangmai"
+    ]
+  },
+  {
+    "slug": "pai",
+    "name": "Pai",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": []
+  },
+  {
+    "slug": "chiang-rai",
+    "name": "Chiang Rai",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Chiangrai"
+    ]
+  },
+  {
+    "slug": "luang-prabang",
+    "name": "Luang Prabang",
+    "country": "Laos",
+    "route": "se-asia-loop",
+    "aliases": [
+      "LPB",
+      "Luang Phabang"
+    ]
+  },
+  {
+    "slug": "vang-vieng",
+    "name": "Vang Vieng",
+    "country": "Laos",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Vangvieng"
+    ]
+  },
+  {
+    "slug": "vientiane",
+    "name": "Vientiane",
+    "country": "Laos",
+    "route": "se-asia-loop",
+    "aliases": []
+  },
+  {
+    "slug": "hanoi",
+    "name": "Hanoi",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Ha Noi"
+    ]
+  },
+  {
+    "slug": "ha-giang",
+    "name": "Ha Giang",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Ha Giang Loop",
+      "Hagiang"
+    ]
+  },
+  {
+    "slug": "sapa",
+    "name": "Sapa",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Sa Pa"
+    ]
+  },
+  {
+    "slug": "ninh-binh",
+    "name": "Ninh Binh",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Tam Coc",
+      "Trang An"
+    ]
+  },
+  {
+    "slug": "cat-ba",
+    "name": "Cat Ba",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Cat Ba Island",
+      "Ha Long Bay",
+      "Halong Bay",
+      "Ha Long",
+      "Halong",
+      "Lan Ha Bay"
+    ]
+  },
+  {
+    "slug": "phong-nha",
+    "name": "Phong Nha",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Phong Nha-Ke Bang",
+      "Phong Nha Ke Bang"
+    ]
+  },
+  {
+    "slug": "hue",
+    "name": "Hue",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Huế"
+    ]
+  },
+  {
+    "slug": "hoi-an",
+    "name": "Hoi An",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Hội An",
+      "Hoian"
+    ]
+  },
+  {
+    "slug": "da-lat",
+    "name": "Da Lat",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Dalat",
+      "Đà Lạt"
+    ]
+  },
+  {
+    "slug": "ho-chi-minh-city",
+    "name": "Ho Chi Minh City",
+    "country": "Vietnam",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Saigon",
+      "HCMC",
+      "Sai Gon"
+    ]
+  },
+  {
+    "slug": "phnom-penh",
+    "name": "Phnom Penh",
+    "country": "Cambodia",
+    "route": "se-asia-loop",
+    "aliases": []
+  },
+  {
+    "slug": "kampot",
+    "name": "Kampot",
+    "country": "Cambodia",
+    "route": "se-asia-loop",
+    "aliases": []
+  },
+  {
+    "slug": "siem-reap",
+    "name": "Siem Reap",
+    "country": "Cambodia",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Angkor",
+      "Angkor Wat"
+    ]
+  },
+  {
+    "slug": "koh-rong",
+    "name": "Koh Rong",
+    "country": "Cambodia",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Ko Rong"
+    ]
+  },
+  {
+    "slug": "koh-tao",
+    "name": "Koh Tao",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Ko Tao"
+    ]
+  },
+  {
+    "slug": "koh-phangan",
+    "name": "Koh Phangan",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Ko Pha Ngan",
+      "Ko Phangan",
+      "Koh Pha Ngan"
+    ]
+  },
+  {
+    "slug": "krabi",
+    "name": "Krabi",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Ao Nang",
+      "Railay",
+      "Railay Beach"
+    ]
+  },
+  {
+    "slug": "koh-lanta",
+    "name": "Koh Lanta",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Ko Lanta"
+    ]
+  },
+  {
+    "slug": "koh-phi-phi",
+    "name": "Koh Phi Phi",
+    "country": "Thailand",
+    "route": "se-asia-loop",
+    "aliases": [
+      "Phi Phi",
+      "Ko Phi Phi",
+      "Phi Phi Island"
+    ]
+  }
+]
