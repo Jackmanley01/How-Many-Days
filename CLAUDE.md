@@ -73,6 +73,7 @@ All stats logic lives in `lib/stats.ts` as pure functions with unit tests in `li
 - **When people went:** month shares (largest remainder) from eligible stays that gave a month; hidden under 10 such stays. "Busiest" = up to 3 most common months, in season order (Nov, Dec, Jan).
 - **Reviews:** eligible stays that left a tip, newest first, with "X of N stays left a tip".
 - **Filters:** a style filter keeps stays whose `styles` include that style, then every rule above runs again on the filtered set.
+- **Answer filter results are worked out at build time** for all travellers and every style (`townStatsByStyle`). The page only switches between them; the browser never calculates.
 
 Each rule needs tests, including:
 - the .5 tie-break;
@@ -183,7 +184,7 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 
 ```
 app/            routes and page components
-components/     UI pieces (AnswerCard, DistributionChart, RegretBar, MonthChart, ReviewList, NextStops, FilterPanel, StylePills)
+components/     UI pieces (TownAnswer, AnswerCard, DistributionChart, RegretBar, FilterPanel, StylePills, MonthChart, TownReviews, ReviewList, NextStops)
 lib/            stats.ts, data.ts (loading + validation), towns.ts, labels.ts (display words), build-date.ts, csv.ts, form-import.ts (import logic)
 data/           towns.json, stays.csv, raw/ (git-ignored), sample/ (stays.csv, form-export.csv)
 scripts/        import-form.ts
@@ -259,6 +260,10 @@ scripts/        import-form.ts
 - 2026-11-19: The month chart is headed "When people went" (honest: it's when people visited, not when it's best). No season labels until data supports them.
 - 2026-11-19: Answer lead line: "Most people stay" for 30+ stays, "People stayed" for Early data.
 - 2026-11-19: Next stops: the next 3 towns in `towns.json` order, wrapping round the loop, each with its own answer. No travel times (no data for them).
+- 2026-11-19: Answer filter is pick-then-apply, as in the mockup: choose a style, then "Show answer · N stays". Reset returns to all travellers.
+- 2026-11-19: The answer filter does not change "When people went" (rule 7 lists only the number, the chart and the regret figures).
+- 2026-11-19: Filters are not saved in the web address for now. Revisit with link-preview images (Phase 3).
+- 2026-11-19: Review pills only show styles with at least one tip. The answer filter always shows all six styles, with their stay counts.
 
 ## Founder checklist
 

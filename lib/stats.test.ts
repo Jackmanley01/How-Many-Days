@@ -18,6 +18,7 @@ import {
   regretShares,
   skipPercent,
   townStats,
+  townStatsByStyle,
 } from "./stats.ts";
 
 const NOW = new Date("2026-11-19T12:00:00Z");
@@ -377,5 +378,28 @@ describe("townReviews", () => {
     const { reviews, totalStays } = townReviews(stays, "pai", NOW);
     expect(reviews.map((r) => r.id)).toEqual(["b", "a"]);
     expect(totalStays).toBe(3);
+  });
+});
+
+describe("townStatsByStyle (answer filter, worked out ahead of time)", () => {
+  const stays = [
+    ...many(30, 2, { styles: ["party"] }),
+    ...many(12, 5, { styles: ["chill", "hiking"] }),
+    ...many(3, 4, { styles: ["food"] }),
+  ];
+  const byStyle = townStatsByStyle(stays, "pai", NOW);
+
+  it("has an entry for all travellers and every style", () => {
+    expect(Object.keys(byStyle)).toEqual(["all", "party", "chill", "hiking", "budget", "food", "culture"]);
+  });
+
+  it("matches townStats for each style, every rule re-run", () => {
+    expect(byStyle.all).toEqual(townStats(stays, "pai", { now: NOW }));
+    expect(byStyle.chill).toEqual(townStats(stays, "pai", { now: NOW, style: "chill" }));
+    expect(byStyle.all).toMatchObject({ n: 45, confidence: "single" });
+    expect(byStyle.party).toMatchObject({ n: 30, confidence: "single", answer: 2 });
+    expect(byStyle.hiking).toMatchObject({ n: 12, confidence: "early" });
+    expect(byStyle.food).toMatchObject({ n: 3, confidence: "none", answer: null, regret: null, distribution: null });
+    expect(byStyle.budget).toMatchObject({ n: 0, confidence: "none" });
   });
 });

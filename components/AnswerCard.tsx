@@ -1,10 +1,15 @@
 import type { TownStats } from "@/lib/stats.ts";
-import { daysAgoText, rangeText, staysText } from "@/lib/labels.ts";
+import { capitalise, daysAgoText, rangeText, staysText } from "@/lib/labels.ts";
 
-type Props = { townName: string; stats: TownStats };
+type Props = {
+  townName: string;
+  stats: TownStats;
+  /** The answer filter's group, e.g. "chill travellers"; null for all travellers. */
+  people?: string | null;
+};
 
 /** The answer: big number (or range), the evidence line and the regret callout. */
-export function AnswerCard({ townName, stats }: Props) {
+export function AnswerCard({ townName, stats, people = null }: Props) {
   const { n, confidence, answer, range, regret, skipPercent, latestDaysAgo } = stats;
   const evidence = [n > 0 ? staysText(n) : null, latestDaysAgo !== null ? daysAgoText(latestDaysAgo) : null, "last 24 months"]
     .filter(Boolean)
@@ -14,18 +19,26 @@ export function AnswerCard({ townName, stats }: Props) {
     <section aria-label="The answer" className="flex flex-col gap-3 rounded-card border border-border bg-surface p-[22px]">
       {confidence === "none" ? (
         <>
-          <p className="font-display text-[28px] font-bold leading-tight tracking-tight">Not enough stays yet.</p>
+          <p className="font-display text-[28px] font-bold leading-tight tracking-tight">
+            {people ? `Not enough ${people} yet.` : "Not enough stays yet."}
+          </p>
           <p className="text-[15px] leading-normal text-text-secondary">
-            {n === 0
-              ? `Nobody's logged ${townName} yet. Been? You're the first data point.`
-              : `Only ${staysText(n)} so far. We show a number once 10 people have logged one.`}
+            {people
+              ? n === 0
+                ? `No ${people} have logged ${townName} yet. Try all travellers.`
+                : `Only ${n} ${people} have logged ${townName}. We show a number once 10 have.`
+              : n === 0
+                ? `Nobody's logged ${townName} yet. Been? You're the first data point.`
+                : `Only ${staysText(n)} so far. We show a number once 10 people have logged one.`}
           </p>
         </>
       ) : (
         <>
           <div className="flex items-center justify-between gap-3">
             <p className="text-sm font-semibold text-text-secondary">
-              {confidence === "single" ? "Most people stay" : "People stayed"}
+              {confidence === "single"
+                ? `Most ${people ?? "people"} stay`
+                : `${people ? capitalise(people) : "People"} stayed`}
             </p>
             {confidence === "early" && (
               <span className="rounded-full bg-accent-tint px-2.5 py-1 text-xs font-semibold text-accent-text">Early data</span>

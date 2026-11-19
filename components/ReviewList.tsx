@@ -9,15 +9,9 @@ const VERDICT_TONE: Record<Verdict, string> = {
 };
 
 /** Reviews: every card carries nights stayed, the verdict and the month; the tip is the text. */
-export function ReviewList({ reviews, totalStays }: { reviews: Stay[]; totalStays: number }) {
+export function ReviewList({ reviews }: { reviews: Stay[] }) {
   return (
-    <section className="flex flex-col gap-3">
-      <h2 className="font-display text-[19px] font-semibold">What people said</h2>
-      <p className="text-sm text-text-secondary">
-        {reviews.length === 0
-          ? "No tips yet."
-          : `${reviews.length} of ${totalStays} ${totalStays === 1 ? "stay" : "stays"} left a tip.`}
-      </p>
+    <div className="flex flex-col gap-3">
       {reviews.map((r) => (
         <article key={r.id} className="flex flex-col gap-2.5 rounded-review border border-border bg-surface p-4">
           <div className="flex flex-wrap gap-1.5">
@@ -32,6 +26,6 @@ export function ReviewList({ reviews, totalStays }: { reviews: Stay[]; totalStay
           </p>
         </article>
       ))}
-    </section>
+    </div>
   );
 }

@@ -313,3 +313,16 @@ export function townReviews(allStays: Stay[], townSlug: string, now: Date): { re
     .sort((a, b) => (a.submittedAt < b.submittedAt ? 1 : a.submittedAt > b.submittedAt ? -1 : a.id.localeCompare(b.id)));
   return { reviews, totalStays: stays.length };
 }
+
+// ---------------------------------------------------------------------------
+// Answer filter: everything worked out ahead of time for every style, so the
+// page only switches between ready-made results and never calculates.
+
+export const STYLE_KEYS = ["party", "chill", "hiking", "budget", "food", "culture"] as const satisfies readonly Style[];
+export type AnswerFilter = "all" | Style;
+
+export function townStatsByStyle(allStays: Stay[], townSlug: string, now: Date): Record<AnswerFilter, TownStats> {
+  const result = { all: townStats(allStays, townSlug, { now }) } as Record<AnswerFilter, TownStats>;
+  for (const style of STYLE_KEYS) result[style] = townStats(allStays, townSlug, { now, style });
+  return result;
+}

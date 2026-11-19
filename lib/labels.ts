@@ -44,3 +44,17 @@ export function daysAgoText(days: number): string {
   if (days === 1) return "latest yesterday";
   return `latest ${days} days ago`;
 }
+
+/** How a filtered group of travellers is named: "Not enough chill travellers yet". */
+export const STYLE_PEOPLE: Record<Style, string> = {
+  party: "party travellers",
+  chill: "chill travellers",
+  hiking: "hikers",
+  budget: "budget travellers",
+  food: "food lovers",
+  culture: "culture lovers",
+};
+
+export function capitalise(text: string): string {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
