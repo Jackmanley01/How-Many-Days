@@ -149,11 +149,14 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 | accent-tint | #FFF4EC | regret callout background |
 | accent-text | #7C2D12 | text on accent-tint |
 | bar | #CBD2DC | non-highlighted chart bars |
-| slate | #64748B | "About right" segment |
+| slate | #64748B | spare (no longer used for "About right") |
+| brand | #15803D | brand green: the "How Many Days" name, selected pills, active Filter button, primary buttons, "About right" |
+| brand-tint | #F0FDF4 | "About right" chip background |
+| brand-text | #14532D | text on brand-tint |
 
-- **Fonts:** Space Grotesk (headings and every number) and Inter (body), via `next/font`.
+- **Fonts:** Inter for everything (headings, numbers and body), via `next/font`.
 - **Shape:** cards use radius 20px (16px for review cards), 1px border, no shadows, no gradients, no emoji. Icons are simple stroke SVGs.
-- **Answer number:** about 104px, Space Grotesk, weight 700.
+- **Answer number:** about 104px, Inter, weight 700.
 - **Accessibility:**
   - touch targets at least 44px;
   - real `<button>` and `<a>` elements;
@@ -263,6 +266,8 @@ scripts/        import-form.ts
 - 2026-11-19: Answer filter is pick-then-apply, as in the mockup: choose a style, then "Show answer · N stays". Reset returns to all travellers.
 - 2026-11-19: The answer filter does not change "When people went" (rule 7 lists only the number, the chart and the regret figures).
 - 2026-11-19: Filters are not saved in the web address for now. Revisit with link-preview images (Phase 3).
+- 2026-11-19: Font changed to Inter for everything (founder picked it from a side-by-side comparison as the most natural). Space Grotesk removed.
+- 2026-11-19: Added a brand green (#15803D) for the name, selected pills, the active Filter button, primary buttons and "About right". Orange stays for regret and the answer's chart bar.
 - 2026-11-19: Review pills only show styles with at least one tip. The answer filter always shows all six styles, with their stay counts.
 
 ## Founder checklist

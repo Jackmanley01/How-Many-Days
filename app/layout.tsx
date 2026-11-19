@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import { loadStays } from "@/lib/data.ts";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
@@ -25,14 +20,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background font-sans text-ink">
         <div className="mx-auto flex min-h-full w-full max-w-[560px] flex-col px-4">
           <header className="flex items-center justify-between gap-3 py-4">
             <Link
               href="/"
-              className="flex min-h-11 items-center font-display text-lg font-bold tracking-tight"
+              className="flex min-h-11 items-center font-display text-lg font-bold tracking-tight text-brand"
             >
               How Many Days
             </Link>

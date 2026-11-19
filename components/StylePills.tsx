@@ -22,7 +22,7 @@ export function StylePills<T extends string>({ options, selected, onSelect, labe
             aria-pressed={on}
             onClick={() => onSelect(o.value)}
             className={`min-h-11 rounded-full border px-4 text-sm font-semibold transition-colors ${
-              on ? "border-ink bg-ink text-white" : "border-[#D1D5DB] bg-surface text-ink hover:border-ink"
+              on ? "border-brand bg-brand text-white" : "border-[#D1D5DB] bg-surface text-ink hover:border-ink"
             }`}
           >
             {o.label}

@@ -9,8 +9,8 @@ export function DistributionChart({ distribution, scope }: Props) {
   const max = Math.max(...distribution.map((b) => b.percent), 1);
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-baseline justify-between gap-3">
-        <h2 className="font-display text-[19px] font-semibold">How long people stayed</h2>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+        <h2 className="whitespace-nowrap font-display text-[19px] font-semibold">How long people stayed</h2>
         <span className="text-xs font-semibold text-text-secondary">{scope}</span>
       </div>
       <ul className="grid h-[200px] grid-cols-5 gap-2.5" aria-label="Share of stays by nights">

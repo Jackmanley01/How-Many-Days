@@ -35,7 +35,7 @@ export function FilterPanel({ id, answers, pending, onPick, onReset, onApply }: 
         >
           Reset
         </button>
-        <button type="button" onClick={onApply} className="min-h-11 flex-1 rounded-full bg-ink px-5 text-sm font-semibold text-white">
+        <button type="button" onClick={onApply} className="min-h-11 flex-1 rounded-full bg-brand px-5 text-sm font-semibold text-white">
           Show answer · {staysText(answers[pending].n)}
         </button>
       </div>

@@ -14,6 +14,9 @@ const tokens: Record<string, string> = {
   "accent-text": "#7c2d12",
   bar: "#cbd2dc",
   slate: "#64748b",
+  brand: "#15803d",
+  "brand-tint": "#f0fdf4",
+  "brand-text": "#14532d",
 };
 
 describe("design tokens", () => {

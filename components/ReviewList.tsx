@@ -3,7 +3,7 @@ import { STYLE_LABEL, VERDICT_LABEL, monthName, nightsText } from "@/lib/labels.
 
 const VERDICT_TONE: Record<Verdict, string> = {
   more: "bg-accent-tint text-accent-text",
-  right: "bg-[#EEF2F6] text-[#334155]",
+  right: "bg-brand-tint text-brand-text",
   fewer: "bg-[#F1F3F6] text-text-secondary",
   skip: "bg-[#F1F3F6] text-text-secondary",
 };

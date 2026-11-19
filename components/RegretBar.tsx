@@ -4,7 +4,7 @@ import type { RegretShares } from "@/lib/stats.ts";
 export function RegretBar({ regret }: { regret: RegretShares }) {
   const parts = [
     { key: "shorter", label: "Fewer nights", percent: regret.shorter, bar: "bg-bar", text: "text-text-secondary" },
-    { key: "right", label: "About right", percent: regret.right, bar: "bg-slate", text: "text-[#334155]" },
+    { key: "right", label: "About right", percent: regret.right, bar: "bg-brand", text: "text-brand" },
     { key: "longer", label: "More nights", percent: regret.longer, bar: "bg-accent", text: "text-accent" },
   ];
   return (
