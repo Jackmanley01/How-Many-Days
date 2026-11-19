@@ -242,3 +242,74 @@ export function townStats(allStays: Stay[], townSlug: string, { now, style }: St
     distribution: distribution(stays, (b) => b === bucketFor(answer)),
   };
 }
+
+// ---------------------------------------------------------------------------
+// "When people went" and reviews
+
+export const MONTH_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] as const;
+
+export type MonthStats = {
+  /** Stays that gave a month. */
+  n: number;
+  /** 12 entries, January first: whole percentages summing to 100. */
+  months: { month: number; percent: number }[];
+  /** Up to the 3 most common months, in season order (Nov, Dec, Jan, not Jan, Nov, Dec). Ties: earlier month wins. */
+  busiest: number[];
+};
+
+/**
+ * When people went, for one town (optionally style-filtered like the answer).
+ * Null when fewer than 10 eligible stays gave a month: never guess.
+ */
+export function monthStats(allStays: Stay[], townSlug: string, { now, style }: StatsOptions): MonthStats | null {
+  let stays = eligibleStays(
+    allStays.filter((s) => s.townSlug === townSlug),
+    now,
+  );
+  if (style) stays = stays.filter((s) => s.styles.includes(style));
+  const withMonth = stays.filter((s) => s.month !== null);
+  if (withMonth.length < MIN_STAYS_FOR_RANGE) return null;
+
+  const counts = Array.from({ length: 12 }, (_, i) => withMonth.filter((s) => s.month === i + 1).length);
+  const percents = largestRemainder(counts);
+  const busiest = counts
+    .map((count, i) => ({ count, month: i + 1 }))
+    .filter((m) => m.count > 0)
+    .sort((a, b) => b.count - a.count || a.month - b.month)
+    .slice(0, 3)
+    .map((m) => m.month);
+
+  return { n: withMonth.length, months: percents.map((percent, i) => ({ month: i + 1, percent })), busiest: seasonOrder(busiest) };
+}
+
+/**
+ * Orders months round the year so a season that crosses New Year reads
+ * naturally: start just after the biggest gap between the chosen months.
+ */
+export function seasonOrder(months: number[]): number[] {
+  const sorted = [...months].sort((a, b) => a - b);
+  if (sorted.length < 2) return sorted;
+  let start = 0;
+  let biggestGap = -1;
+  for (let i = 0; i < sorted.length; i++) {
+    const prev = sorted[(i - 1 + sorted.length) % sorted.length];
+    const gap = (sorted[i] - prev + 12) % 12;
+    if (gap > biggestGap) {
+      biggestGap = gap;
+      start = i;
+    }
+  }
+  return [...sorted.slice(start), ...sorted.slice(0, start)];
+}
+
+/** Reviews: eligible stays for a town that left a tip, newest first. */
+export function townReviews(allStays: Stay[], townSlug: string, now: Date): { reviews: Stay[]; totalStays: number } {
+  const stays = eligibleStays(
+    allStays.filter((s) => s.townSlug === townSlug),
+    now,
+  );
+  const reviews = stays
+    .filter((s) => s.tip !== null && s.tip !== "")
+    .sort((a, b) => (a.submittedAt < b.submittedAt ? 1 : a.submittedAt > b.submittedAt ? -1 : a.id.localeCompare(b.id)));
+  return { reviews, totalStays: stays.length };
+}

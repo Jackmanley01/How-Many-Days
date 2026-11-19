@@ -39,3 +39,10 @@ export function makeTownMatcher(towns: Town[]): (name: string) => string | null 
   }
   return (name) => lookup.get(normaliseTownName(name)) ?? null;
 }
+
+/** The next `count` towns after this one in route order, wrapping round (it's a loop). */
+export function nextStops(towns: Town[], slug: string, count = 3): Town[] {
+  const i = towns.findIndex((t) => t.slug === slug);
+  if (i === -1) return [];
+  return Array.from({ length: Math.min(count, towns.length - 1) }, (_, k) => towns[(i + 1 + k) % towns.length]);
+}

@@ -9,9 +9,12 @@ import {
   largestRemainder,
   latestDaysAgo,
   median,
+  monthStats,
+  townReviews,
   nightRange,
   percentile,
   recencyCutoff,
+  seasonOrder,
   regretShares,
   skipPercent,
   townStats,
@@ -308,5 +311,71 @@ describe("sample data gives each confidence level", () => {
 
   it("Hoi An: not enough yet", () => {
     expect(townStats(stays, "hoi-an", { now: NOW })).toMatchObject({ n: 8, confidence: "none" });
+  });
+});
+
+describe("monthStats (When people went)", () => {
+  const withMonth = (month: number | null, extra: Partial<Stay> = {}) => stay(3, "right", { month, ...extra });
+
+  it("hides under 10 stays that gave a month", () => {
+    expect(monthStats([...Array.from({ length: 9 }, () => withMonth(1)), withMonth(null), withMonth(null)], "pai", { now: NOW })).toBeNull();
+  });
+
+  it("gives 12 whole percentages summing to 100, and the 3 busiest months in calendar order", () => {
+    const stays = [
+      ...Array.from({ length: 4 }, () => withMonth(12)),
+      ...Array.from({ length: 3 }, () => withMonth(1)),
+      ...Array.from({ length: 2 }, () => withMonth(2)),
+      withMonth(3),
+      withMonth(null),
+    ];
+    const m = monthStats(stays, "pai", { now: NOW })!;
+    expect(m.n).toBe(10);
+    expect(m.months).toHaveLength(12);
+    expect(m.months.map((x) => x.percent)).toEqual([30, 20, 10, 0, 0, 0, 0, 0, 0, 0, 0, 40]);
+    expect(sum(m.months.map((x) => x.percent))).toBe(100);
+    expect(m.busiest).toEqual([12, 1, 2]);
+  });
+
+  it("breaks ties for busiest by the earlier month", () => {
+    const stays = [5, 5, 6, 6, 7, 7, 8, 8, 9, 9].map((mo) => withMonth(mo));
+    expect(monthStats(stays, "pai", { now: NOW })!.busiest).toEqual([5, 6, 7]);
+  });
+
+  it("follows the style filter and recency like the answer", () => {
+    const stays = [
+      ...Array.from({ length: 10 }, () => withMonth(1, { styles: ["chill"] })),
+      ...Array.from({ length: 10 }, () => withMonth(6, { styles: ["party"] })),
+      ...Array.from({ length: 10 }, () => withMonth(7, { styles: ["chill"], submittedAt: "2020-01-01" })),
+    ];
+    expect(monthStats(stays, "pai", { now: NOW, style: "chill" })!.busiest).toEqual([1]);
+  });
+});
+
+describe("seasonOrder", () => {
+  it.each([
+    [[1, 11, 12], [11, 12, 1]],
+    [[1, 2, 12], [12, 1, 2]],
+    [[3, 4, 5], [3, 4, 5]],
+    [[7, 1], [1, 7]],
+    [[6], [6]],
+    [[], []],
+  ])("%j reads as %j", (input, expected) => {
+    expect(seasonOrder(input)).toEqual(expected);
+  });
+});
+
+describe("townReviews", () => {
+  it("lists recent stays with a tip, newest first, and counts all recent stays", () => {
+    const stays = [
+      stay(2, "more", { id: "old-tip", tip: "Too old", submittedAt: "2020-01-01" }),
+      stay(2, "more", { id: "a", tip: "First", submittedAt: "2026-01-01" }),
+      stay(2, "more", { id: "b", tip: "Newest", submittedAt: "2026-09-01" }),
+      stay(2, "more", { id: "c", tip: null, submittedAt: "2026-10-01" }),
+      stay(2, "more", { id: "d", tip: "Other town", townSlug: "hoi-an" }),
+    ];
+    const { reviews, totalStays } = townReviews(stays, "pai", NOW);
+    expect(reviews.map((r) => r.id)).toEqual(["b", "a"]);
+    expect(totalStays).toBe(3);
   });
 });

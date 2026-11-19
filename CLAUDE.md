@@ -69,6 +69,9 @@ All stats logic lives in `lib/stats.ts` as pure functions with unit tests in `li
 - **Percentiles** use linear interpolation, the same method as Google Sheets' `PERCENTILE`. A range end that lands exactly on .5 rounds outwards (bottom end down, top end up).
 - **Under 10 stays** (with or without a filter): no number, no regret percentages, no chart. Only the count of stays.
 - **Largest remainder ties:** equal remainders go to the earlier item (longer, right, shorter; or bars left to right).
+- **"Today"** for all stats is the build date (`BUILD_DATE`, set in `next.config.ts`), because Next.js 16 doesn't allow reading the clock while prerendering. The site must be rebuilt for "latest X days ago" to move on.
+- **When people went:** month shares (largest remainder) from eligible stays that gave a month; hidden under 10 such stays. "Busiest" = up to 3 most common months, in season order (Nov, Dec, Jan).
+- **Reviews:** eligible stays that left a tip, newest first, with "X of N stays left a tip".
 - **Filters:** a style filter keeps stays whose `styles` include that style, then every rule above runs again on the filtered set.
 
 Each rule needs tests, including:
@@ -114,7 +117,7 @@ Phase 1 has no database. Data lives in files and pages are built from them.
 | Route | What it shows |
 | --- | --- |
 | `/` | Search box (filters the town list as you type) and the launch-route towns, each with its answer and regret % |
-| `/[town]` | City page: town name + Filter button, answer card (number, range line, evidence line, regret callout), distribution chart, Looking back bar (fewer / same / more), when to go, reviews with style pills, next stops on the route |
+| `/[town]` | City page: town name + Filter button, answer card (number, range line, evidence line, regret callout), distribution chart, Looking back bar (fewer / same / more), "When people went" month chart, reviews with style pills, next 3 stops on the route |
 | `/how-it-works` | How the numbers are calculated, in plain words, including the confidence levels |
 | `/add` | Phase 1: a short page linking to the Google Form. Phase 2: our own form |
 
@@ -180,8 +183,8 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 
 ```
 app/            routes and page components
-components/     UI pieces (AnswerCard, DistributionChart, RegretBar, ReviewList, FilterPanel, StylePills)
-lib/            stats.ts, data.ts (loading + validation), towns.ts, csv.ts, form-import.ts (import logic)
+components/     UI pieces (AnswerCard, DistributionChart, RegretBar, MonthChart, ReviewList, NextStops, FilterPanel, StylePills)
+lib/            stats.ts, data.ts (loading + validation), towns.ts, labels.ts (display words), build-date.ts, csv.ts, form-import.ts (import logic)
 data/           towns.json, stays.csv, raw/ (git-ignored), sample/ (stays.csv, form-export.csv)
 scripts/        import-form.ts
 ```
@@ -228,6 +231,7 @@ scripts/        import-form.ts
 - Planned → Stayed → Wished;
 - season-aware answers;
 - "Steal a night from…" route advice.
+- Idea, parked (not committed): traveller profiles and friends (see who visited a place, a friend's countries). Out of scope until the form proves demand; needs identities, logins, a database and privacy consent. Decide with real numbers.
 
 ## Decisions log
 
@@ -250,6 +254,11 @@ scripts/        import-form.ts
 - 2026-11-19: Range ends on an exact .5 round outwards (bottom down, top up) so the range never claims more certainty than the data has.
 - 2026-11-19: No booking button for now. Revisit when looking to monetise. Roadmap task 8 is deferred.
 - 2026-11-19: For Early data, the chart highlights every bar inside the range.
+- 2026-11-19: Traveller profiles and friends stay out of scope for Phase 1 (founder chose option A). Parked as a Phase 3 idea in the roadmap.
+- 2026-11-19: Reviews show only stays that left a tip, newest first, with "X of N stays left a tip".
+- 2026-11-19: The month chart is headed "When people went" (honest: it's when people visited, not when it's best). No season labels until data supports them.
+- 2026-11-19: Answer lead line: "Most people stay" for 30+ stays, "People stayed" for Early data.
+- 2026-11-19: Next stops: the next 3 towns in `towns.json` order, wrapping round the loop, each with its own answer. No travel times (no data for them).
 
 ## Founder checklist
 

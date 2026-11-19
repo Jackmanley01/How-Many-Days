@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { loadTowns, makeTownMatcher, normaliseTownName, type Town } from "./towns.ts";
+import { loadTowns, makeTownMatcher, nextStops, normaliseTownName, type Town } from "./towns.ts";
 
 describe("normaliseTownName", () => {
   it("ignores capitals, accents, punctuation and extra spaces", () => {
@@ -41,5 +41,21 @@ describe("makeTownMatcher (clashes)", () => {
       { slug: "b", name: "B", country: "X", route: "r", aliases: ["same"] },
     ];
     expect(() => makeTownMatcher(towns)).toThrow(/matches both a and b/);
+  });
+});
+
+describe("nextStops", () => {
+  const towns = loadTowns();
+
+  it("returns the next 3 towns in route order", () => {
+    expect(nextStops(towns, "pai").map((t) => t.slug)).toEqual(["chiang-rai", "luang-prabang", "vang-vieng"]);
+  });
+
+  it("wraps round at the end of the loop", () => {
+    expect(nextStops(towns, "koh-phi-phi").map((t) => t.slug)).toEqual(["bangkok", "chiang-mai", "pai"]);
+  });
+
+  it("returns nothing for an unknown town", () => {
+    expect(nextStops(towns, "atlantis")).toEqual([]);
   });
 });
