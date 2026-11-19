@@ -96,7 +96,7 @@ Phase 1 has no database. Data lives in files and pages are built from them.
 | verdict | "skip" \| "fewer" \| "right" \| "more" | |
 | month | int 1–12 or null | month of the stay |
 | styles | string[] | party, chill, hiking, budget, food, culture |
-| tripLength | string | "2-4w", "1-3m", "3m+" |
+| tripLength | string or null | "2-4w", "1-3m", "3m+"; null if left blank |
 | tip | string or null | max 140 chars, trimmed |
 
 **Importing the form export:**
@@ -176,8 +176,8 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 ```
 app/            routes and page components
 components/     UI pieces (AnswerCard, DistributionChart, RegretBar, ReviewList, FilterPanel, StylePills)
-lib/            stats.ts, booking.ts, data.ts (loading + validation), towns.ts
-data/           towns.json, stays.csv, raw/, sample/
+lib/            stats.ts, booking.ts, data.ts (loading + validation), towns.ts, csv.ts, form-import.ts (import logic)
+data/           towns.json, stays.csv, raw/ (git-ignored), sample/ (stays.csv, form-export.csv)
 scripts/        import-form.ts
 ```
 
@@ -234,6 +234,12 @@ scripts/        import-form.ts
 - 2026-11-19: One Cat Ba page; "Ha Long Bay", "Halong" and "Lan Ha Bay" count as Cat Ba.
 - 2026-11-19: One Krabi page covering Ao Nang and Railay.
 - 2026-11-19: Sample data uses Pai (34 stays), Chiang Mai (18) and Hoi An (8) so it covers all three confidence levels. Always badged "Sample data".
+- 2026-11-19: Import: a tip over 140 characters is dropped but the stay is kept; the report lists it.
+- 2026-11-19: Import: the same town twice in one submission keeps the first stay; the report lists the rest.
+- 2026-11-19: Import: stops from trips outside Southeast Asia are left out and counted in the report, not listed as unmatched towns.
+- 2026-11-19: Import: form timestamps are read as day/month/year unless the file proves month/day/year; the report says which.
+- 2026-11-19: The site uses `data/stays.csv` once it has rows, otherwise `data/sample/stays.csv` with the "Sample data" badge. A bad row in either stops the build.
+- 2026-11-19: `data/raw/` is git-ignored (except its README) so form exports with emails are never committed.
 
 ## Founder checklist
 

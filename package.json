@@ -2,13 +2,15 @@
   "name": "how-many-days",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "import": "node scripts/import-form.ts"
   },
   "dependencies": {
     "next": "16.4.6",
