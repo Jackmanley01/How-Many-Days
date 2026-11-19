@@ -32,7 +32,7 @@ If a request conflicts with these, stop and ask before building.
 5. **Verdicts are words, never scores:** Skip it / Fewer nights / About right / More nights.
 6. **Every review carries data:** nights stayed, verdict and month. Review text is optional and max 140 characters.
 7. **Two separate filters.**
-   - The answer filter (Filter button by the town name) changes only the number, the chart, the regret figures and the booking button.
+   - The answer filter (Filter button by the town name) changes only the number, the chart and the regret figures.
    - The review filter (pills above the reviews) changes only which reviews show.
    Never link them.
 8. **Show the evidence.** Every answer shows its sample size and recency: "142 stays · latest 6 days ago".
@@ -65,7 +65,10 @@ All stats logic lives in `lib/stats.ts` as pure functions with unit tests in `li
   - aboutRight = About right / n.
   - Show as whole-number percentages that always sum to 100. Use the largest-remainder method.
 - **Skip share:** if Skip it ≥ 10% of n, also show "X% would skip it".
-- **Distribution chart:** buckets 1, 2, 3, 4, 5+ nights, as whole-number percentages that sum to 100 (largest remainder). Highlight the bucket that contains the answer.
+- **Distribution chart:** buckets 1, 2, 3, 4, 5+ nights, as whole-number percentages that sum to 100 (largest remainder). Highlight the bucket that contains the answer; for Early data, highlight every bucket inside the range.
+- **Percentiles** use linear interpolation, the same method as Google Sheets' `PERCENTILE`. A range end that lands exactly on .5 rounds outwards (bottom end down, top end up).
+- **Under 10 stays** (with or without a filter): no number, no regret percentages, no chart. Only the count of stays.
+- **Largest remainder ties:** equal remainders go to the earlier item (longer, right, shorter; or bars left to right).
 - **Filters:** a style filter keeps stays whose `styles` include that style, then every rule above runs again on the filtered set.
 
 Each rule needs tests, including:
@@ -111,14 +114,16 @@ Phase 1 has no database. Data lives in files and pages are built from them.
 | Route | What it shows |
 | --- | --- |
 | `/` | Search box (filters the town list as you type) and the launch-route towns, each with its answer and regret % |
-| `/[town]` | City page: town name + Filter button, answer card (number, range line, evidence line, regret callout), distribution chart, Looking back bar (fewer / same / more), when to go, "Find a bed · N nights" button, reviews with style pills, next stops on the route |
+| `/[town]` | City page: town name + Filter button, answer card (number, range line, evidence line, regret callout), distribution chart, Looking back bar (fewer / same / more), when to go, reviews with style pills, next stops on the route |
 | `/how-it-works` | How the numbers are calculated, in plain words, including the confidence levels |
 | `/add` | Phase 1: a short page linking to the Google Form. Phase 2: our own form |
 
 - **Page title:** "How many days in Pai? 3 nights, from 142 backpackers | How Many Days".
 - **Meta description:** written from the same numbers.
 
-## Booking button
+## Booking button (deferred)
+
+Not being built for now (founder decision, 2026-11-19). Revisit only when looking to monetise. The notes below are kept for then.
 
 - `lib/booking.ts` exports `bookingUrl(town, nights)`.
 - The partner base URL and any affiliate ID come from environment variables (`BOOKING_BASE_URL`, `BOOKING_AFFILIATE_ID`). Never hardcode them.
@@ -176,7 +181,7 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 ```
 app/            routes and page components
 components/     UI pieces (AnswerCard, DistributionChart, RegretBar, ReviewList, FilterPanel, StylePills)
-lib/            stats.ts, booking.ts, data.ts (loading + validation), towns.ts, csv.ts, form-import.ts (import logic)
+lib/            stats.ts, data.ts (loading + validation), towns.ts, csv.ts, form-import.ts (import logic)
 data/           towns.json, stays.csv, raw/ (git-ignored), sample/ (stays.csv, form-export.csv)
 scripts/        import-form.ts
 ```
@@ -211,7 +216,7 @@ scripts/        import-form.ts
 5. Build the city page: answer card, evidence line, regret callout, distribution chart, Looking back bar, reviews.
 6. Add the answer filter (Filter button and panel) and the review filter (style pills), kept separate.
 7. Build the home page with search and the town list.
-8. Add the booking button (`lib/booking.ts`, environment variables).
+8. ~~Add the booking button~~ Deferred: discuss when looking to monetise.
 9. Add `/how-it-works`, `/add`, and the empty and early-data states.
 10. Deploy to Vercel.
 11. Swap sample data for the real form export.
@@ -240,6 +245,11 @@ scripts/        import-form.ts
 - 2026-11-19: Import: form timestamps are read as day/month/year unless the file proves month/day/year; the report says which.
 - 2026-11-19: The site uses `data/stays.csv` once it has rows, otherwise `data/sample/stays.csv` with the "Sample data" badge. A bad row in either stops the build.
 - 2026-11-19: `data/raw/` is git-ignored (except its README) so form exports with emails are never committed.
+- 2026-11-19: Under 10 stays, hide the regret percentages and the chart too, not just the number. Show only the count.
+- 2026-11-19: Percentiles use the Google Sheets `PERCENTILE` method so ranges can be checked in the sheet.
+- 2026-11-19: Range ends on an exact .5 round outwards (bottom down, top up) so the range never claims more certainty than the data has.
+- 2026-11-19: No booking button for now. Revisit when looking to monetise. Roadmap task 8 is deferred.
+- 2026-11-19: For Early data, the chart highlights every bar inside the range.
 
 ## Founder checklist
 
