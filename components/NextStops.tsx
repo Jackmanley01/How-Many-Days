@@ -13,7 +13,7 @@ export function NextStops({ stops }: { stops: NextStop[] }) {
         {stops.map(({ town, answer, stopNumber }) => (
           <li key={town.slug} className="w-[168px] shrink-0 snap-start">
             <Link href={`/${town.slug}`} className="flex h-full min-h-11 flex-col gap-3 rounded-card bg-surface p-4 hover:bg-chip">
-              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand">Stop {stopNumber}</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-accent">Stop {stopNumber}</span>
               <span className="flex flex-col">
                 <span className="text-[17px] font-bold leading-tight">{town.name}</span>
                 <span className="text-[13px] text-text-secondary">{town.country}</span>

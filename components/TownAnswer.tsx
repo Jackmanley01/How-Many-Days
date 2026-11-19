@@ -67,7 +67,7 @@ export function TownAnswer({ townName, country, stopNumber, totalStops, answers 
         </button>
         <div className="flex flex-col gap-2">
           <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-text-secondary">
-            {country} <span className="text-brand">·</span> Stop {stopNumber} of {totalStops}
+            {country} <span className="text-accent">·</span> Stop {stopNumber} of {totalStops}
           </p>
           <h1 className="text-[68px] font-bold leading-[0.9] tracking-[-0.045em]">{townName}</h1>
         </div>

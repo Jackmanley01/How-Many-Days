@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             )}
           </header>
           <main className="flex-1 pb-12">{children}</main>
-          <footer className="border-t border-ink/15 pb-10 pt-5 text-xs leading-normal text-text-secondary">
+          <footer className="border-t border-accent/30 pb-10 pt-5 text-xs leading-normal text-text-secondary">
             Every number comes from logged stays, not editors.
             {isSample && " This site is running on made-up sample data for testing."}
           </footer>

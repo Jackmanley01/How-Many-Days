@@ -16,7 +16,7 @@ export function ReviewList({ reviews }: { reviews: Stay[] }) {
       {reviews.map((r, i) => (
         <li key={r.id} className={`grid grid-cols-[56px_1fr] gap-4 py-5 ${i > 0 ? "border-t border-border" : ""}`}>
           <div className="flex flex-col">
-            <span className="text-[34px] font-bold leading-none tracking-[-0.04em]">{r.nightsStayed >= 10 ? "10+" : r.nightsStayed}</span>
+            <span className="text-[34px] font-bold leading-none tracking-[-0.04em] text-accent">{r.nightsStayed >= 10 ? "10+" : r.nightsStayed}</span>
             <span className="text-[12px] font-semibold text-text-secondary">{r.nightsStayed === 1 ? "night" : "nights"}</span>
           </div>
           <article className="flex flex-col items-start gap-2">

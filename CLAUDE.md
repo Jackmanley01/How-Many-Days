@@ -145,20 +145,20 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 | border | #C8E0D0 | dividers, unselected pill borders |
 | ink | #012B1D | main text (forest green), primary buttons |
 | text-secondary | #3E5448 | secondary text (passes contrast on white and sage) |
-| accent | #B9530C | the regret number and other orange text |
-| accent-bar | #E2681A | pumpkin fills: highlighted chart bar, "More nights" segment |
-| accent-tint | #FFF1E4 | regret strip background, "More nights" chip |
-| accent-text | #7A3208 | text on accent-tint |
+| accent | #8A4F24 | brown: the regret number, section eyebrow labels, "Stop N" labels, review night counts |
+| accent-bar | #A8693A | brown fills: highlighted chart bar, "More nights" segment |
+| accent-tint | #F1E4D4 | sand: regret strip background, "More nights" and "Early data" chips |
+| accent-text | #4A2810 | text on accent-tint |
 | bar | #D3E4D9 | non-highlighted chart bars |
 | chip | #E8F3EC | neutral chips ("Fewer nights", "Skip it") |
 | slate | #64748B | spare |
-| brand | #17754C | brand green: the name, eyebrow labels, "About right", busiest months, selected pill borders |
+| brand | #17754C | brand green: the name, "About right", busiest months, selected pill borders |
 | brand-tint | #BDEBD1 | mint: selected pills, active Filter button, range band, "About right" chip |
 | brand-text | #012B1D | text on brand-tint |
 
 - **Fonts:** Inter for everything (headings, numbers and body), via `next/font`.
 - **Shape:** white cards on the sage page, no borders, radius 20px (28px for the answer hero). No shadows, no gradients, no emoji. Icons are simple stroke SVGs.
-- **Layout:** editorial. Filter button top left, then "COUNTRY · STOP N OF 26" and a 68px town name. The answer hero has the big number, a 1–10+ range ruler, the evidence line and a full-width regret strip. Each later section has a green eyebrow label and a bold heading over a hairline rule ("The spread", "Timing", "In their words", "Keep going"). Reviews are one list with a big night count on the left. Next stops scroll sideways. 40px between sections.
+- **Layout:** editorial. Filter button top left, then "COUNTRY · STOP N OF 26" and a 68px town name. The answer hero has the big number, a 1–10+ range ruler, the evidence line and a full-width regret strip. Each later section has a brown eyebrow label and a bold heading over a thin brown rule ("The spread", "Timing", "In their words", "Keep going"). Reviews are one list with a big night count on the left. Next stops scroll sideways. 40px between sections.
 - **Answer number:** 148px (112px for a range), Inter, weight 700, tight letter spacing.
 - **Accessibility:**
   - touch targets at least 44px;
@@ -274,6 +274,7 @@ scripts/        import-form.ts
 - 2026-11-19: The Filter button sits top left, above the country and town name. The filter panel stays hidden until it is tapped.
 - 2026-11-19: Colourway: sage page, white cards, forest-green text, mint highlights, pumpkin orange for regret (option "L1", from the founder's Forest / Jungle / Pumpkin reference, made lighter twice).
 - 2026-11-19: Layout refresh to look less generic: poster-style hero with a range ruler, editorial section labels, list-style reviews, sideways next stops, more spacing.
+- 2026-11-19: Brown replaces pumpkin orange (founder request), and is used more: regret strip, highlighted bars, section labels, stop labels, review night counts, dividing lines.
 - 2026-11-19: Review pills only show styles with at least one tip. The answer filter always shows all six styles, with their stay counts.
 
 ## Founder checklist
