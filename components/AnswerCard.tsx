@@ -53,13 +53,13 @@ export function AnswerCard({ townName, stats, people = null }: Props) {
       </div>
 
       {regret && (
-        <div className="flex flex-col gap-1 bg-accent-tint px-6 py-4">
+        <div className="mx-3 mb-3 flex flex-col gap-1 rounded-[20px] bg-more-tint px-5 py-4">
           <p className="flex items-center gap-4">
-            <span className="text-[44px] font-bold leading-none tracking-[-0.03em] text-accent">{regret.longer}%</span>
-            <span className="text-[15px] font-medium leading-snug text-accent-text">wished they&rsquo;d stayed longer</span>
+            <span className="text-[44px] font-bold leading-none tracking-[-0.03em] text-brand">{regret.longer}%</span>
+            <span className="text-[15px] font-medium leading-snug text-more-text">wished they&rsquo;d stayed longer</span>
           </p>
           {skipPercent !== null && (
-            <p className="text-sm text-accent-text">
+            <p className="text-sm text-fewer-text">
               <span className="font-bold">{skipPercent}%</span> would skip it
             </p>
           )}

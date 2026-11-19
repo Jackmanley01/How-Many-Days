@@ -11,8 +11,8 @@
   --color-background: #dceee2;
   --color-surface: #ffffff;
   --color-border: #c8e0d0;
-  --color-ink: #012b1d;
-  --color-text-secondary: #3e5448;
+  --color-ink: #3a2716;
+  --color-text-secondary: #6b5444;
   --color-accent: #8a4f24;
   --color-accent-bar: #a8693a;
   --color-accent-tint: #f1e4d4;
@@ -22,7 +22,15 @@
   --color-slate: #64748b;
   --color-brand: #17754c;
   --color-brand-tint: #bdebd1;
-  --color-brand-text: #012b1d;
+  --color-brand-text: #3a2716;
+  --color-fewer: #b3412e;
+  --color-fewer-tint: #f6e0db;
+  --color-fewer-text: #7a2a1d;
+  --color-right: #8fcb9f;
+  --color-right-tint: #e3f2e6;
+  --color-right-text: #2f6b3f;
+  --color-more-tint: #d6efdf;
+  --color-more-text: #0f4f33;
 
   --radius-card: 20px;
   --radius-review: 16px;

@@ -143,18 +143,23 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 | background | #DCEEE2 | page (sage green) |
 | surface | #FFFFFF | cards |
 | border | #C8E0D0 | dividers, unselected pill borders |
-| ink | #012B1D | main text (forest green), primary buttons |
-| text-secondary | #3E5448 | secondary text (passes contrast on white and sage) |
-| accent | #8A4F24 | brown: the regret number, section eyebrow labels, "Stop N" labels, review night counts |
-| accent-bar | #A8693A | brown fills: highlighted chart bar, "More nights" segment |
-| accent-tint | #F1E4D4 | sand: regret strip background, "More nights" and "Early data" chips |
+| ink | #3A2716 | main text (deep earth brown), primary buttons, the big number |
+| text-secondary | #6B5444 | secondary text, warm brown (passes contrast on white and sage) |
+| accent | #8A4F24 | brown: section eyebrow labels, "Stop N" labels, review night counts, the answer's chart bar label |
+| accent-bar | #A8693A | brown fill: the answer's bar on the chart |
+| accent-tint | #F1E4D4 | sand: "Early data" chip |
 | accent-text | #4A2810 | text on accent-tint |
 | bar | #D3E4D9 | non-highlighted chart bars |
-| chip | #E8F3EC | neutral chips ("Fewer nights", "Skip it") |
+| chip | #E8F3EC | neutral chips |
 | slate | #64748B | spare |
-| brand | #17754C | brand green: the name, "About right", busiest months, selected pill borders |
-| brand-tint | #BDEBD1 | mint: selected pills, active Filter button, range band, "About right" chip |
-| brand-text | #012B1D | text on brand-tint |
+| brand | #17754C | strong green: the name, "More nights" (bar, %, regret number), busiest months, selected pill borders |
+| brand-tint | #BDEBD1 | mint: selected pills, active Filter button, range band |
+| brand-text | #3A2716 | text on brand-tint |
+| fewer | #B3412E | earthy red: "Fewer nights" bar and % |
+| fewer-tint / fewer-text | #F6E0DB / #7A2A1D | "Fewer nights" and "Skip it" chips, "would skip it" line |
+| right | #8FCB9F | soft green: "About right" bar (fill only; too light for text) |
+| right-tint / right-text | #E3F2E6 / #2F6B3F | "About right" chip and % |
+| more-tint / more-text | #D6EFDF / #0F4F33 | regret strip ("wished they'd stayed longer") and "More nights" chip |
 
 - **Fonts:** Inter for everything (headings, numbers and body), via `next/font`.
 - **Shape:** white cards on the sage page, no borders, radius 20px (28px for the answer hero). No shadows, no gradients, no emoji. Icons are simple stroke SVGs.
@@ -275,6 +280,7 @@ scripts/        import-form.ts
 - 2026-11-19: Colourway: sage page, white cards, forest-green text, mint highlights, pumpkin orange for regret (option "L1", from the founder's Forest / Jungle / Pumpkin reference, made lighter twice).
 - 2026-11-19: Layout refresh to look less generic: poster-style hero with a range ruler, editorial section labels, list-style reviews, sideways next stops, more spacing.
 - 2026-11-19: Brown replaces pumpkin orange (founder request), and is used more: regret strip, highlighted bars, section labels, stop labels, review night counts, dividing lines.
+- 2026-11-19: Text is deep earth brown, not forest green. Verdict colours are a traffic light: Fewer nights / Skip it = earthy red, About right = soft green, More nights = strong green, used the same in the Looking back bar, review chips and the regret strip. Brown stays for labels, lines and the answer's chart bar.
 - 2026-11-19: Review pills only show styles with at least one tip. The answer filter always shows all six styles, with their stay counts.
 
 ## Founder checklist

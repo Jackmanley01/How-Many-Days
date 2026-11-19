@@ -2,10 +2,10 @@ import type { Stay, Verdict } from "@/lib/data.ts";
 import { STYLE_LABEL, VERDICT_LABEL, monthName } from "@/lib/labels.ts";
 
 const VERDICT_TONE: Record<Verdict, string> = {
-  more: "bg-accent-tint text-accent-text",
-  right: "bg-brand-tint text-brand-text",
-  fewer: "bg-chip text-text-secondary",
-  skip: "bg-chip text-text-secondary",
+  more: "bg-more-tint text-more-text",
+  right: "bg-right-tint text-right-text",
+  fewer: "bg-fewer-tint text-fewer-text",
+  skip: "bg-fewer-tint text-fewer-text",
 };
 
 /** Reviews as one list: big night count on the left, verdict, tip and month on the right. */

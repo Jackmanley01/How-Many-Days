@@ -7,8 +7,8 @@ const tokens: Record<string, string> = {
   background: "#dceee2",
   surface: "#ffffff",
   border: "#c8e0d0",
-  ink: "#012b1d",
-  "text-secondary": "#3e5448",
+  ink: "#3a2716",
+  "text-secondary": "#6b5444",
   accent: "#8a4f24",
   "accent-bar": "#a8693a",
   "accent-tint": "#f1e4d4",
@@ -18,7 +18,15 @@ const tokens: Record<string, string> = {
   slate: "#64748b",
   brand: "#17754c",
   "brand-tint": "#bdebd1",
-  "brand-text": "#012b1d",
+  "brand-text": "#3a2716",
+  fewer: "#b3412e",
+  "fewer-tint": "#f6e0db",
+  "fewer-text": "#7a2a1d",
+  right: "#8fcb9f",
+  "right-tint": "#e3f2e6",
+  "right-text": "#2f6b3f",
+  "more-tint": "#d6efdf",
+  "more-text": "#0f4f33",
 };
 
 describe("design tokens", () => {
