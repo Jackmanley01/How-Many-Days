@@ -156,9 +156,10 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 ## Stack
 
 - Next.js (App Router) + TypeScript, pages generated at build time from the data files
-- Tailwind CSS with the tokens above in the config
+- Tailwind CSS v4 with the tokens above in `app/globals.css` (`@theme` block; v4 has no config file)
 - Vitest for tests
 - Hosted on Vercel
+- Next.js 16 differs from older versions: see `AGENTS.md` and read the guide in `node_modules/next/dist/docs/` before writing Next.js code.
 - Ask before adding any other dependency. Charts are plain HTML/CSS bars; no chart library.
 
 **Commands** (keep this list current as scripts are added):
@@ -166,6 +167,7 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 - `npm run dev`: local site at http://localhost:3000
 - `npm run build`: production build (must pass before a task is done)
 - `npm test`: unit tests (must pass before a task is done)
+- `npm run test:watch`: re-runs tests as files change
 - `npm run lint`: lint
 - `npm run import`: `data/raw/form.csv` → `data/stays.csv` with an unmatched-towns report
 
@@ -227,6 +229,7 @@ scripts/        import-form.ts
 - 2026-11-19: Whole numbers only. No stars, no half stars, no decimals.
 - 2026-11-19: Product name is How Many Days; the unit on the page is nights.
 - 2026-11-19: Launch on one route (Southeast Asia loop, 20–30 towns), website before app.
+- 2026-11-19: Design tokens live in `app/globals.css` because Tailwind v4 replaced the config file. A test (`lib/design-tokens.test.ts`) keeps them matching the Design table.
 
 ## Founder checklist
 
