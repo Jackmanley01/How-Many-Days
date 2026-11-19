@@ -268,6 +268,7 @@ scripts/        import-form.ts
 - 2026-11-19: Filters are not saved in the web address for now. Revisit with link-preview images (Phase 3).
 - 2026-11-19: Font changed to Inter for everything (founder picked it from a side-by-side comparison as the most natural). Space Grotesk removed.
 - 2026-11-19: Added a brand green (#15803D) for the name, selected pills, the active Filter button, primary buttons and "About right". Orange stays for regret and the answer's chart bar.
+- 2026-11-19: The Filter button sits top left, above the country and town name. The filter panel stays hidden until it is tapped.
 - 2026-11-19: Review pills only show styles with at least one tip. The answer filter always shows all six styles, with their stay counts.
 
 ## Founder checklist
