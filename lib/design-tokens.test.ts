@@ -4,19 +4,21 @@ import { describe, expect, it } from "vitest";
 // The colour table in CLAUDE.md ("Design"). If a colour changes there,
 // change it in app/globals.css too, and this test keeps the two in step.
 const tokens: Record<string, string> = {
-  background: "#f5f6f8",
+  background: "#dceee2",
   surface: "#ffffff",
-  border: "#e3e6eb",
-  ink: "#111827",
-  "text-secondary": "#4b5563",
-  accent: "#c2410c",
-  "accent-tint": "#fff4ec",
-  "accent-text": "#7c2d12",
-  bar: "#cbd2dc",
+  border: "#c8e0d0",
+  ink: "#012b1d",
+  "text-secondary": "#3e5448",
+  accent: "#b9530c",
+  "accent-bar": "#e2681a",
+  "accent-tint": "#fff1e4",
+  "accent-text": "#7a3208",
+  bar: "#d3e4d9",
+  chip: "#e8f3ec",
   slate: "#64748b",
-  brand: "#15803d",
-  "brand-tint": "#f0fdf4",
-  "brand-text": "#14532d",
+  brand: "#17754c",
+  "brand-tint": "#bdebd1",
+  "brand-text": "#012b1d",
 };
 
 describe("design tokens", () => {

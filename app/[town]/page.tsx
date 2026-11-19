@@ -56,14 +56,22 @@ export default async function TownPage({ params }: PageProps<"/[town]">) {
   const answers = townStatsByStyle(stays, town.slug, now);
   const months = monthStats(stays, town.slug, { now });
   const { reviews, totalStays } = townReviews(stays, town.slug, now);
+  const stopNumberOf = (slug: string) => towns.findIndex((t) => t.slug === slug) + 1;
   const stops = nextStops(towns, town.slug).map((t) => ({
     town: t,
-    answer: answerWords(townStats(stays, t.slug, { now })) ?? "Not enough stays yet",
+    answer: answerWords(townStats(stays, t.slug, { now })),
+    stopNumber: stopNumberOf(t.slug),
   }));
 
   return (
-    <div className="flex flex-col gap-5">
-      <TownAnswer townName={town.name} country={town.country} answers={answers} />
+    <div className="flex flex-col gap-10">
+      <TownAnswer
+        townName={town.name}
+        country={town.country}
+        stopNumber={stopNumberOf(town.slug)}
+        totalStops={towns.length}
+        answers={answers}
+      />
 
       {months && <MonthChart stats={months} />}
 

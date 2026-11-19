@@ -5,25 +5,28 @@
   Tailwind v4 keeps theme values here instead of a tailwind.config file.
   Use them as classes, e.g. bg-background, bg-surface, border-border,
   text-ink, text-text-secondary, text-accent, bg-accent-tint, text-accent-text,
-  bg-bar, bg-slate, bg-brand, bg-brand-tint, text-brand-text.
+  bg-bar, bg-chip, bg-accent-bar, bg-brand, bg-brand-tint, text-brand-text.
 */
 @theme {
-  --color-background: #f5f6f8;
+  --color-background: #dceee2;
   --color-surface: #ffffff;
-  --color-border: #e3e6eb;
-  --color-ink: #111827;
-  --color-text-secondary: #4b5563;
-  --color-accent: #c2410c;
-  --color-accent-tint: #fff4ec;
-  --color-accent-text: #7c2d12;
-  --color-bar: #cbd2dc;
+  --color-border: #c8e0d0;
+  --color-ink: #012b1d;
+  --color-text-secondary: #3e5448;
+  --color-accent: #b9530c;
+  --color-accent-bar: #e2681a;
+  --color-accent-tint: #fff1e4;
+  --color-accent-text: #7a3208;
+  --color-bar: #d3e4d9;
+  --color-chip: #e8f3ec;
   --color-slate: #64748b;
-  --color-brand: #15803d;
-  --color-brand-tint: #f0fdf4;
-  --color-brand-text: #14532d;
+  --color-brand: #17754c;
+  --color-brand-tint: #bdebd1;
+  --color-brand-text: #012b1d;
 
   --radius-card: 20px;
   --radius-review: 16px;
+  --radius-hero: 28px;
 }
 
 @theme inline {

@@ -1,31 +1,35 @@
 import type { Stay, Verdict } from "@/lib/data.ts";
-import { STYLE_LABEL, VERDICT_LABEL, monthName, nightsText } from "@/lib/labels.ts";
+import { STYLE_LABEL, VERDICT_LABEL, monthName } from "@/lib/labels.ts";
 
 const VERDICT_TONE: Record<Verdict, string> = {
   more: "bg-accent-tint text-accent-text",
   right: "bg-brand-tint text-brand-text",
-  fewer: "bg-[#F1F3F6] text-text-secondary",
-  skip: "bg-[#F1F3F6] text-text-secondary",
+  fewer: "bg-chip text-text-secondary",
+  skip: "bg-chip text-text-secondary",
 };
 
-/** Reviews: every card carries nights stayed, the verdict and the month; the tip is the text. */
+/** Reviews as one list: big night count on the left, verdict, tip and month on the right. */
 export function ReviewList({ reviews }: { reviews: Stay[] }) {
+  if (reviews.length === 0) return null;
   return (
-    <div className="flex flex-col gap-3">
-      {reviews.map((r) => (
-        <article key={r.id} className="flex flex-col gap-2.5 rounded-review border border-border bg-surface p-4">
-          <div className="flex flex-wrap gap-1.5">
-            <span className="rounded-full bg-[#F1F3F6] px-2.5 py-1 text-xs font-semibold">Stayed {nightsText(r.nightsStayed)}</span>
-            <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${VERDICT_TONE[r.verdict]}`}>{VERDICT_LABEL[r.verdict]}</span>
+    <ul className="flex flex-col rounded-card bg-surface px-5">
+      {reviews.map((r, i) => (
+        <li key={r.id} className={`grid grid-cols-[56px_1fr] gap-4 py-5 ${i > 0 ? "border-t border-border" : ""}`}>
+          <div className="flex flex-col">
+            <span className="text-[34px] font-bold leading-none tracking-[-0.04em]">{r.nightsStayed >= 10 ? "10+" : r.nightsStayed}</span>
+            <span className="text-[12px] font-semibold text-text-secondary">{r.nightsStayed === 1 ? "night" : "nights"}</span>
           </div>
-          <p className="text-[15px] leading-[1.45]">{r.tip}</p>
-          <p className="text-[13px] text-text-secondary">
-            {[r.month !== null ? monthName(r.month) : "Month not given", r.styles.map((s) => STYLE_LABEL[s]).join(", ")]
-              .filter(Boolean)
-              .join(" · ")}
-          </p>
-        </article>
+          <article className="flex flex-col items-start gap-2">
+            <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${VERDICT_TONE[r.verdict]}`}>{VERDICT_LABEL[r.verdict]}</span>
+            <p className="text-[16px] leading-[1.45]">{r.tip}</p>
+            <p className="text-[13px] text-text-secondary">
+              {[r.month !== null ? monthName(r.month) : "Month not given", r.styles.map((s) => STYLE_LABEL[s]).join(", ")]
+                .filter(Boolean)
+                .join(" · ")}
+            </p>
+          </article>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

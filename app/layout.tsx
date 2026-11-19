@@ -24,21 +24,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full bg-background font-sans text-ink">
         <div className="mx-auto flex min-h-full w-full max-w-[560px] flex-col px-4">
-          <header className="flex items-center justify-between gap-3 py-4">
+          <header className="flex items-center justify-between gap-3 pb-6 pt-5">
             <Link
               href="/"
-              className="flex min-h-11 items-center font-display text-lg font-bold tracking-tight text-brand"
+              className="flex min-h-11 items-center text-[17px] font-extrabold tracking-[-0.02em] text-brand"
             >
               How Many Days
             </Link>
             {isSample && (
-              <span className="rounded-full border border-border bg-surface px-2.5 py-1 text-xs font-semibold text-text-secondary">
+              <span className="rounded-full bg-surface px-3 py-1.5 text-xs font-bold text-text-secondary">
                 Sample data
               </span>
             )}
           </header>
-          <main className="flex-1 pb-6">{children}</main>
-          <footer className="pb-8 text-xs leading-normal text-text-secondary">
+          <main className="flex-1 pb-12">{children}</main>
+          <footer className="border-t border-ink/15 pb-10 pt-5 text-xs leading-normal text-text-secondary">
             Every number comes from logged stays, not editors.
             {isSample && " This site is running on made-up sample data for testing."}
           </footer>

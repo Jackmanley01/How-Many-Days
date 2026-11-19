@@ -7,10 +7,13 @@ import { AnswerCard } from "./AnswerCard.tsx";
 import { DistributionChart } from "./DistributionChart.tsx";
 import { FilterPanel } from "./FilterPanel.tsx";
 import { RegretBar } from "./RegretBar.tsx";
+import { SectionHeading } from "./SectionHeading.tsx";
 
 type Props = {
   townName: string;
   country: string;
+  stopNumber: number;
+  totalStops: number;
   /** Worked out at build time for every style (lib/stats.ts townStatsByStyle). */
   answers: Record<AnswerFilter, TownStats>;
 };
@@ -18,11 +21,11 @@ type Props = {
 const PANEL_ID = "answer-filter";
 
 /**
- * Town name, Filter button and everything the answer filter changes:
- * the answer card, the chart and the Looking back bar. Nothing else on the
+ * Filter button, town name and everything the answer filter changes:
+ * the answer, the chart and the Looking back bar. Nothing else on the
  * page reads this filter (product rule 7).
  */
-export function TownAnswer({ townName, country, answers }: Props) {
+export function TownAnswer({ townName, country, stopNumber, totalStops, answers }: Props) {
   const [applied, setApplied] = useState<AnswerFilter>("all");
   const [pending, setPending] = useState<AnswerFilter>("all");
   const [open, setOpen] = useState(false);
@@ -37,14 +40,14 @@ export function TownAnswer({ townName, country, answers }: Props) {
 
   return (
     <>
-      <section className="flex flex-col items-start gap-3 pt-1">
+      <section className="flex flex-col items-start gap-5">
         <button
           type="button"
           onClick={toggle}
           aria-expanded={open}
           aria-controls={PANEL_ID}
-          className={`flex min-h-11 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-semibold ${
-            applied === "all" ? "border-[#D1D5DB] bg-surface text-ink" : "border-brand bg-brand text-white"
+          className={`flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-bold ${
+            applied === "all" ? "bg-surface text-ink" : "bg-brand-tint text-brand-text ring-2 ring-brand"
           }`}
         >
           <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -62,9 +65,11 @@ export function TownAnswer({ townName, country, answers }: Props) {
             </>
           )}
         </button>
-        <div className="flex flex-col gap-1">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.06em] text-text-secondary">{country}</p>
-          <h1 className="font-display text-[44px] font-bold leading-none tracking-[-0.02em]">{townName}</h1>
+        <div className="flex flex-col gap-2">
+          <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-text-secondary">
+            {country} <span className="text-brand">·</span> Stop {stopNumber} of {totalStops}
+          </p>
+          <h1 className="text-[68px] font-bold leading-[0.9] tracking-[-0.045em]">{townName}</h1>
         </div>
       </section>
 
@@ -89,10 +94,13 @@ export function TownAnswer({ townName, country, answers }: Props) {
       <AnswerCard townName={townName} stats={stats} people={people} />
 
       {stats.distribution && stats.regret && (
-        <section className="flex flex-col gap-4 rounded-card border border-border bg-surface px-[22px] py-5">
-          <DistributionChart distribution={stats.distribution} scope={people ? capitalise(people) : "All travellers"} />
-          <div className="h-px bg-border" />
-          <RegretBar regret={stats.regret} />
+        <section className="flex flex-col gap-4">
+          <SectionHeading eyebrow="The spread" title="How long people stayed" note={people ? capitalise(people) : "All travellers"} />
+          <div className="flex flex-col gap-6 rounded-card bg-surface px-5 py-5">
+            <DistributionChart distribution={stats.distribution} />
+            <div className="h-px bg-border" />
+            <RegretBar regret={stats.regret} />
+          </div>
         </section>
       )}
     </>
