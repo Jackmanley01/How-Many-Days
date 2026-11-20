@@ -1,5 +1,8 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { normaliseTownName } from "./town-names.ts";
+
+export { normaliseTownName };
 
 export type Town = {
   slug: string;
@@ -11,17 +14,6 @@ export type Town = {
 
 export function loadTowns(root: string = process.cwd()): Town[] {
   return JSON.parse(readFileSync(join(root, "data", "towns.json"), "utf8")) as Town[];
-}
-
-/** "  Hội  An " -> "hoi an": lower case, no accents, single spaces. */
-export function normaliseTownName(name: string): string {
-  return name
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/[đĐ]/g, "d")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
 }
 
 /** Returns a function that turns a typed town name into a slug, or null if it doesn't match. */

@@ -11,7 +11,7 @@ export function RangeRuler({ range, answer }: { range: NightRange; answer: numbe
       <div className="relative h-3">
         <div className="absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-bar" />
         <div
-          className="absolute top-0 h-3 rounded-full bg-brand-tint"
+          className="absolute top-0 h-3 rounded-full bg-brand-lime"
           style={{ left: `calc(${at(range.low)}% - 6px)`, width: `calc(${at(range.high) - at(range.low)}% + 12px)` }}
         />
         {answer !== null && (

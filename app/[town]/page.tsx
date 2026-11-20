@@ -6,8 +6,8 @@ import { TownAnswer } from "@/components/TownAnswer.tsx";
 import { TownReviews } from "@/components/TownReviews.tsx";
 import { buildDate } from "@/lib/build-date.ts";
 import { loadStays } from "@/lib/data.ts";
-import { nightsText, rangeText } from "@/lib/labels.ts";
-import { monthStats, townReviews, townStats, townStatsByStyle, type TownStats } from "@/lib/stats.ts";
+import { answerText } from "@/lib/labels.ts";
+import { monthStats, townReviews, townStats, townStatsByStyle } from "@/lib/stats.ts";
 import { loadTowns, nextStops } from "@/lib/towns.ts";
 
 // One page per launch-route town, built ahead of time. 'navigation' keeps the
@@ -23,19 +23,12 @@ function findTown(slug: string) {
   return loadTowns().find((t) => t.slug === slug);
 }
 
-/** "4 nights" / "3–5 nights" / null: the answer in words, for titles and next stops. */
-function answerWords(stats: TownStats): string | null {
-  if (stats.confidence === "single" && stats.answer !== null) return nightsText(stats.answer);
-  if (stats.confidence === "early" && stats.range) return rangeText(stats.range);
-  return null;
-}
-
 export async function generateMetadata({ params }: PageProps<"/[town]">): Promise<Metadata> {
   const { town: slug } = await params;
   const town = findTown(slug);
   if (!town) return {};
   const stats = townStats(loadStays().stays, town.slug, { now: buildDate() });
-  const answer = answerWords(stats);
+  const answer = answerText(stats);
   const title = answer
     ? `How many days in ${town.name}? ${answer}, from ${stats.n} backpackers`
     : `How many days in ${town.name}?`;
@@ -51,7 +44,7 @@ export default async function TownPage({ params }: PageProps<"/[town]">) {
   if (!town) notFound();
 
   const now = buildDate();
-  const { stays } = loadStays();
+  const { stays, isSample } = loadStays();
   const towns = loadTowns();
   const answers = townStatsByStyle(stays, town.slug, now);
   const months = monthStats(stays, town.slug, { now });
@@ -59,7 +52,7 @@ export default async function TownPage({ params }: PageProps<"/[town]">) {
   const stopNumberOf = (slug: string) => towns.findIndex((t) => t.slug === slug) + 1;
   const stops = nextStops(towns, town.slug).map((t) => ({
     town: t,
-    answer: answerWords(townStats(stays, t.slug, { now })),
+    answer: answerText(townStats(stays, t.slug, { now })),
     stopNumber: stopNumberOf(t.slug),
   }));
 
@@ -70,6 +63,7 @@ export default async function TownPage({ params }: PageProps<"/[town]">) {
         country={town.country}
         stopNumber={stopNumberOf(town.slug)}
         totalStops={towns.length}
+        isSample={isSample}
         answers={answers}
       />
 

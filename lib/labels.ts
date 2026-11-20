@@ -58,3 +58,10 @@ export const STYLE_PEOPLE: Record<Style, string> = {
 export function capitalise(text: string): string {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
+
+/** "4 nights" / "3–5 nights" / null: a town's answer in words, for titles, lists and next stops. */
+export function answerText(stats: { confidence: "single" | "early" | "none"; answer: number | null; range: NightRange | null }): string | null {
+  if (stats.confidence === "single" && stats.answer !== null) return nightsText(stats.answer);
+  if (stats.confidence === "early" && stats.range) return rangeText(stats.range);
+  return null;
+}

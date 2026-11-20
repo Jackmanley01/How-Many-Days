@@ -138,33 +138,37 @@ Not being built for now (founder decision, 2026-11-19). Revisit only when lookin
 
 Mobile first (design at 390px wide). On desktop, centre a single column with a max width of 560px.
 
+Colourway: bright and playful, inspired by Duolingo (lime, deep green, orange stickers). Inspired by, not copied from, that brand.
+
 | Token | Value | Use |
 | --- | --- | --- |
-| background | #DCEEE2 | page (sage green) |
+| background | #F5FBEF | page (pale lime) |
 | surface | #FFFFFF | cards |
-| border | #C8E0D0 | dividers, unselected pill borders |
-| ink | #3A2716 | main text (deep earth brown), primary buttons, the big number |
-| text-secondary | #6B5444 | secondary text, warm brown (passes contrast on white and sage) |
-| accent | #8A4F24 | brown: section eyebrow labels, "Stop N" labels, review night counts, the answer's chart bar label |
-| accent-bar | #A8693A | brown fill: the answer's bar on the chart |
-| accent-tint | #F1E4D4 | sand: "Early data" chip |
-| accent-text | #4A2810 | text on accent-tint |
-| bar | #D3E4D9 | non-highlighted chart bars |
-| chip | #E8F3EC | neutral chips |
-| slate | #64748B | spare |
-| brand | #17754C | strong green: the name, "More nights" (bar, %, regret number), busiest months, selected pill borders |
-| brand-tint | #BDEBD1 | mint: selected pills, active Filter button, range band |
-| brand-text | #3A2716 | text on brand-tint |
-| fewer | #B3412E | earthy red: "Fewer nights" bar and % |
-| fewer-tint / fewer-text | #F6E0DB / #7A2A1D | "Fewer nights" and "Skip it" chips, "would skip it" line |
-| right | #8FCB9F | soft green: "About right" bar (fill only; too light for text) |
-| right-tint / right-text | #E3F2E6 / #2F6B3F | "About right" chip and % |
-| more-tint / more-text | #D6EFDF / #0F4F33 | regret strip ("wished they'd stayed longer") and "More nights" chip |
+| border | #E3F1D6 | card rings, dashed dividers, unselected pill borders |
+| ink | #1C2A12 | main text, the big number, selected pills, active Filter button |
+| text-secondary | #56664A | secondary text |
+| brand-lime | #58CC02 | page headers (hero), range band, primary buttons (with ink text) |
+| brand-mid | #46A302 | hills in the header scene, highlighted chart bar, busiest months |
+| brand | #2F7A00 | deep green text: "Most people stay", the regret number, "More nights" bar and % |
+| brand-sun | #FFE15A | the sun in the header scene |
+| brand-tint / brand-text | #D7F5B8 / #1C2A12 | spare light lime |
+| accent-bar | #FF9600 | orange stickers ("Stop 3 of 26", "Early data"), with ink text |
+| accent | #A85200 | orange text: section eyebrow labels, "Stop N" labels |
+| accent-tint / accent-text | #FFF0D9 / #8A4500 | night-count tiles and stop-number tiles |
+| bar | #E3F1D6 | non-highlighted chart bars |
+| chip | #EEF7E4 | neutral chips |
+| fewer | #B23B2A | red: "Fewer nights" bar and % |
+| fewer-tint / fewer-text | #F9E1DC / #7A2318 | "Fewer nights" and "Skip it" chips, "would skip it" line |
+| about | #B5E48C | soft green: "About right" bar (fill only) |
+| about-tint / about-text | #EEF7E4 / #3D7A1F | "About right" chip and % |
+| more-tint / more-text | #E5F6D3 / #1F4D00 | regret strip and "More nights" chip |
 
-- **Fonts:** Inter for everything (headings, numbers and body), via `next/font`.
-- **Shape:** white cards on the sage page, no borders, radius 20px (28px for the answer hero). No shadows, no gradients, no emoji. Icons are simple stroke SVGs.
-- **Layout:** editorial. Filter button top left, then "COUNTRY · STOP N OF 26" and a 68px town name. The answer hero has the big number, a 1–10+ range ruler, the evidence line and a full-width regret strip. Each later section has a brown eyebrow label and a bold heading over a thin brown rule ("The spread", "Timing", "In their words", "Keep going"). Reviews are one list with a big night count on the left. Next stops scroll sideways. 40px between sections.
-- **Answer number:** 148px (112px for a range), Inter, weight 700, tight letter spacing.
+Note: never name a colour token after a Tailwind utility word (e.g. "right", "left", "center"); `text-right` would then also recolour text.
+
+- **Fonts:** Inter for everything (headings, numbers and body), via `next/font`. Headings and numbers extra-bold (800); body regular.
+- **Shape:** white cards with a thin lime ring, radius 24px (28px for the answer card), dashed dividers. No shadows, no gradients, no emoji. Icons are simple stroke SVGs; the header scene is flat drawn shapes.
+- **Layout:** playful. Every page opens with a lime header (rounded bottom) holding the "howmanydays" wordmark, the "Sample data" badge and a flat drawn hills-and-sun scene. City page header: Filter button top left, an orange "Stop N of 26 on the loop" sticker, the town name (64px), the country and one dot per route stop. The answer card overlaps the header. Sections have an orange eyebrow label and an extra-bold heading. Reviews show the night count in an orange tile. Next stops are cards with a mini scene. Home page header: "How many nights?", the tagline, and a big search box overlapping the header; below it the route's towns in order, each with its stop number, answer and regret %.
+- **Answer number:** 148px (112px for a range), Inter, weight 800, tight letter spacing.
 - **Accessibility:**
   - touch targets at least 44px;
   - real `<button>` and `<a>` elements;
@@ -195,8 +199,8 @@ Mobile first (design at 390px wide). On desktop, centre a single column with a m
 
 ```
 app/            routes and page components
-components/     UI pieces (TownAnswer, AnswerCard, DistributionChart, RegretBar, FilterPanel, StylePills, MonthChart, TownReviews, ReviewList, NextStops)
-lib/            stats.ts, data.ts (loading + validation), towns.ts, labels.ts (display words), build-date.ts, csv.ts, form-import.ts (import logic)
+components/     UI pieces (SiteHeader, HeroScene, RouteDots, TownSearch, TownAnswer, AnswerCard, RangeRuler, DistributionChart, RegretBar, FilterPanel, StylePills, SectionHeading, MonthChart, TownReviews, ReviewList, NextStops)
+lib/            stats.ts, data.ts (loading + validation), towns.ts, town-names.ts (browser-safe name matching), town-search.ts, labels.ts (display words), build-date.ts, csv.ts, form-import.ts (import logic)
 data/           towns.json, stays.csv, raw/ (git-ignored), sample/ (stays.csv, form-export.csv)
 scripts/        import-form.ts
 ```
@@ -281,6 +285,9 @@ scripts/        import-form.ts
 - 2026-11-19: Layout refresh to look less generic: poster-style hero with a range ruler, editorial section labels, list-style reviews, sideways next stops, more spacing.
 - 2026-11-19: Brown replaces pumpkin orange (founder request), and is used more: regret strip, highlighted bars, section labels, stop labels, review night counts, dividing lines.
 - 2026-11-19: Text is deep earth brown, not forest green. Verdict colours are a traffic light: Fewer nights / Skip it = earthy red, About right = soft green, More nights = strong green, used the same in the Looking back bar, review chips and the regret strip. Brown stays for labels, lines and the answer's chart bar.
+- 2026-11-20: Look changed to bright and playful ("gamified" look only: no badges, streaks or points, per Out of scope). Founder picked the Duolingo-inspired colourway (lime, deep green, orange) from nine brand-inspired options. Replaces the sage / brown look.
+- 2026-11-20: Pages open with a flat drawn header scene instead of photos (no photo source yet). Photos can be added later once there's a licensed source.
+- 2026-11-20: Home page: lime header with "How many nights?" and a search box; towns listed in route order with stop number, answer and regret %; search matches names, other spellings and countries.
 - 2026-11-19: Review pills only show styles with at least one tip. The answer filter always shows all six styles, with their stay counts.
 
 ## Founder checklist

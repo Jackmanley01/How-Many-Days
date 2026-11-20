@@ -1,16 +1,37 @@
+import type { Metadata } from "next";
+import { TownSearch, type TownSummary } from "@/components/TownSearch.tsx";
+import { buildDate } from "@/lib/build-date.ts";
+import { loadStays } from "@/lib/data.ts";
+import { answerText } from "@/lib/labels.ts";
+import { townStats } from "@/lib/stats.ts";
+import { loadTowns } from "@/lib/towns.ts";
+
+export const metadata: Metadata = {
+  title: { absolute: "How Many Days: how many nights to spend in each town" },
+  description:
+    "Search a town on the Southeast Asia loop and see how many nights backpackers actually stayed, and how many wished they'd stayed longer.",
+};
+
 export default function Home() {
+  const now = buildDate();
+  const { stays, isSample } = loadStays();
+  const towns: TownSummary[] = loadTowns().map((t, i) => {
+    const stats = townStats(stays, t.slug, { now });
+    return {
+      slug: t.slug,
+      name: t.name,
+      country: t.country,
+      aliases: t.aliases,
+      stop: i + 1,
+      answer: answerText(stats),
+      earlyData: stats.confidence === "early",
+      wishedLonger: stats.regret?.longer ?? null,
+    };
+  });
+
   return (
-    <section className="rounded-card border border-border bg-surface p-6">
-      <h1 className="font-display text-4xl font-bold leading-tight tracking-tight">
-        How long is enough?
-      </h1>
-      <p className="mt-3 text-text-secondary">
-        Everyone says 2–3 days. Here&rsquo;s what people actually did.
-      </p>
-      <p className="mt-6 text-sm text-text-secondary">
-        Town answers are on the way. They&rsquo;ll come from stays logged by
-        real backpackers.
-      </p>
-    </section>
+    <div className="flex flex-col gap-8">
+      <TownSearch towns={towns} isSample={isSample} />
+    </div>
   );
 }

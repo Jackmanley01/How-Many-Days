@@ -5,34 +5,36 @@
   Tailwind v4 keeps theme values here instead of a tailwind.config file.
   Use them as classes, e.g. bg-background, bg-surface, border-border,
   text-ink, text-text-secondary, text-accent, bg-accent-tint, text-accent-text,
-  bg-bar, bg-chip, bg-accent-bar, bg-brand, bg-brand-tint, text-brand-text.
+  bg-bar, bg-chip, bg-accent-bar, bg-brand, bg-brand-lime, bg-brand-mid, bg-brand-tint.
 */
 @theme {
-  --color-background: #dceee2;
+  --color-background: #f5fbef;
   --color-surface: #ffffff;
-  --color-border: #c8e0d0;
-  --color-ink: #3a2716;
-  --color-text-secondary: #6b5444;
-  --color-accent: #8a4f24;
-  --color-accent-bar: #a8693a;
-  --color-accent-tint: #f1e4d4;
-  --color-accent-text: #4a2810;
-  --color-bar: #d3e4d9;
-  --color-chip: #e8f3ec;
-  --color-slate: #64748b;
-  --color-brand: #17754c;
-  --color-brand-tint: #bdebd1;
-  --color-brand-text: #3a2716;
-  --color-fewer: #b3412e;
-  --color-fewer-tint: #f6e0db;
-  --color-fewer-text: #7a2a1d;
-  --color-right: #8fcb9f;
-  --color-right-tint: #e3f2e6;
-  --color-right-text: #2f6b3f;
-  --color-more-tint: #d6efdf;
-  --color-more-text: #0f4f33;
+  --color-border: #e3f1d6;
+  --color-ink: #1c2a12;
+  --color-text-secondary: #56664a;
+  --color-accent: #a85200;
+  --color-accent-bar: #ff9600;
+  --color-accent-tint: #fff0d9;
+  --color-accent-text: #8a4500;
+  --color-bar: #e3f1d6;
+  --color-chip: #eef7e4;
+  --color-brand: #2f7a00;
+  --color-brand-lime: #58cc02;
+  --color-brand-mid: #46a302;
+  --color-brand-sun: #ffe15a;
+  --color-brand-tint: #d7f5b8;
+  --color-brand-text: #1c2a12;
+  --color-fewer: #b23b2a;
+  --color-fewer-tint: #f9e1dc;
+  --color-fewer-text: #7a2318;
+  --color-about: #b5e48c;
+  --color-about-tint: #eef7e4;
+  --color-about-text: #3d7a1f;
+  --color-more-tint: #e5f6d3;
+  --color-more-text: #1f4d00;
 
-  --radius-card: 20px;
+  --radius-card: 24px;
   --radius-review: 16px;
   --radius-hero: 28px;
 }

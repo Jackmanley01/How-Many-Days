@@ -17,11 +17,11 @@ export function AnswerCard({ townName, stats, people = null }: Props) {
     .join(" · ");
 
   return (
-    <section aria-label="The answer" className="overflow-hidden rounded-hero bg-surface">
+    <section aria-label="The answer" className="overflow-hidden rounded-hero bg-surface ring-1 ring-border">
       <div className="flex flex-col gap-4 px-6 pb-6 pt-5">
         {confidence === "none" ? (
           <>
-            <p className="text-[30px] font-bold leading-[1.1] tracking-[-0.02em]">
+            <p className="text-[30px] font-extrabold leading-[1.1] tracking-[-0.03em]">
               {people ? `Not enough ${people} yet.` : "Not enough stays yet."}
             </p>
             <p className="text-[15px] leading-normal text-text-secondary">
@@ -37,16 +37,16 @@ export function AnswerCard({ townName, stats, people = null }: Props) {
         ) : (
           <>
             <div className="flex items-center justify-between gap-3">
-              <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-text-secondary">
+              <p className="text-[12px] font-extrabold uppercase tracking-[0.1em] text-brand">
                 {confidence === "single" ? `Most ${people ?? "people"} stay` : `${people ? capitalise(people) : "People"} stayed`}
               </p>
               {confidence === "early" && (
-                <span className="rounded-full bg-accent-tint px-2.5 py-1 text-xs font-bold text-accent-text">Early data</span>
+                <span className="rounded-full bg-accent-bar px-2.5 py-1 text-xs font-extrabold text-ink">Early data</span>
               )}
             </div>
             <BigNights stats={stats} />
             {range && <RangeRuler range={range} answer={confidence === "single" ? answer : null} />}
-            {confidence === "single" && range && <p className="text-[15px] font-semibold">Most stayed {rangeText(range)}</p>}
+            {confidence === "single" && range && <p className="text-[15px] font-bold">Most stayed {rangeText(range)}</p>}
           </>
         )}
         <p className="text-[13px] text-text-secondary">{evidence}</p>
@@ -56,7 +56,7 @@ export function AnswerCard({ townName, stats, people = null }: Props) {
         <div className="mx-3 mb-3 flex flex-col gap-1 rounded-[20px] bg-more-tint px-5 py-4">
           <p className="flex items-center gap-4">
             <span className="text-[44px] font-bold leading-none tracking-[-0.03em] text-brand">{regret.longer}%</span>
-            <span className="text-[15px] font-medium leading-snug text-more-text">wished they&rsquo;d stayed longer</span>
+            <span className="text-[15px] font-bold leading-snug text-more-text">wished they&rsquo;d stayed longer</span>
           </p>
           {skipPercent !== null && (
             <p className="text-sm text-fewer-text">
@@ -86,8 +86,8 @@ function BigNights({ stats }: { stats: TownStats }) {
   }
   return (
     <p className="flex items-end gap-3">
-      <span className={`font-bold leading-[0.82] tracking-[-0.06em] ${number.length > 2 ? "text-[112px]" : "text-[148px]"}`}>{number}</span>
-      <span className="pb-2 text-[30px] font-bold leading-none tracking-[-0.02em]">{plural ? "nights" : "night"}</span>
+      <span className={`font-extrabold leading-[0.82] tracking-[-0.06em] ${number.length > 2 ? "text-[112px]" : "text-[148px]"}`}>{number}</span>
+      <span className="pb-2 text-[30px] font-extrabold leading-none tracking-[-0.03em]">{plural ? "nights" : "night"}</span>
     </p>
   );
 }

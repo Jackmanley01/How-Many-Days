@@ -21,9 +21,9 @@ export function FilterPanel({ id, answers, pending, onPick, onReset, onApply }: 
     ...STYLE_KEYS.map((s) => ({ value: s as AnswerFilter, label: `${STYLE_LABEL[s]} · ${answers[s].n}` })),
   ];
   return (
-    <section id={id} aria-label="Filter the answer" className="flex flex-col gap-4 rounded-card bg-surface p-5">
+    <section id={id} aria-label="Filter the answer" className="flex flex-col gap-4 rounded-card bg-surface p-5 ring-1 ring-border">
       <div className="flex flex-col gap-1">
-        <p className="text-[17px] font-bold">Travel style</p>
+        <p className="text-[17px] font-extrabold">Travel style</p>
         <p className="text-[13px] text-text-secondary">Changes the nights, the chart and the regret figures. Reviews have their own filter below.</p>
       </div>
       <StylePills options={options} selected={pending} onSelect={onPick} label="Travel style for the answer" />
@@ -31,11 +31,11 @@ export function FilterPanel({ id, answers, pending, onPick, onReset, onApply }: 
         <button
           type="button"
           onClick={onReset}
-          className="min-h-11 rounded-full border-2 border-border px-5 text-sm font-bold hover:border-brand"
+          className="min-h-11 rounded-full border-2 border-border px-5 text-sm font-extrabold hover:border-brand-mid"
         >
           Reset
         </button>
-        <button type="button" onClick={onApply} className="min-h-11 flex-1 rounded-full bg-ink px-5 text-sm font-bold text-white">
+        <button type="button" onClick={onApply} className="min-h-11 flex-1 rounded-full bg-brand-lime px-5 text-sm font-extrabold text-ink">
           Show answer · {staysText(answers[pending].n)}
         </button>
       </div>

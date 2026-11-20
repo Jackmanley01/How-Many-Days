@@ -11,7 +11,7 @@ export function MonthChart({ stats }: { stats: MonthStats }) {
       <SectionHeading eyebrow="Timing" title="When people went" />
       <div className="flex flex-col gap-3 rounded-card bg-surface px-5 py-5">
         <p className="text-[15px]">
-          Busiest <span className="font-bold">{stats.busiest.map(monthName).join(", ")}</span>
+          Busiest <span className="font-extrabold">{stats.busiest.map(monthName).join(", ")}</span>
         </p>
         <ul className="grid h-[84px] grid-cols-12 gap-1" aria-label="Share of stays by month">
           {stats.months.map((m) => (
@@ -21,7 +21,7 @@ export function MonthChart({ stats }: { stats: MonthStats }) {
               </span>
               <div
                 aria-hidden="true"
-                className={`w-full rounded-[4px] ${busiest.has(m.month) ? "bg-brand" : "bg-bar"}`}
+                className={`w-full rounded-[4px] ${busiest.has(m.month) ? "bg-brand-mid" : "bg-bar"}`}
                 style={{ height: `${Math.max(3, Math.round((m.percent / max) * 60))}px` }}
               />
               <span aria-hidden="true" className={`text-[11px] font-bold ${busiest.has(m.month) ? "text-brand" : "text-text-secondary"}`}>
